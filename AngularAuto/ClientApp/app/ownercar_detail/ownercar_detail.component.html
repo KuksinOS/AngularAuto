@@ -1,0 +1,46 @@
+﻿<div *ngIf="loaded">
+    <h2>ID owner {{ownercar.id}}</h2>
+    <div>
+        <p><b>Name:</b> {{ownercar.name}}</p>
+        <p><b>Age:</b> {{ownercar.age}}</p>
+
+
+    </div>
+
+    <div class="card">
+        <div class="card-body">
+
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Model</th>
+                        <th scope="col">Type</th>
+                        <th scope="col">Engine</th>
+                        <th scope="col">PaintColor</th>
+                        <th scope="col">Wheels</th>
+                        <th scope="col">Owner</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let c of cars">
+                        <th scope="row">{{c?.id}}</th>
+                        <td>{{c?.name}}</td>
+                        <td>{{c?.body}}</td>
+                        <td>{{c?.engine}}</td>
+                        <td>{{c?.paintColor}}</td>
+                        <td>{{c?.wheels}}</td>
+                        <td><input type="checkbox" class="checkbox style-2 pull-right" value="{{ownercar.id}}" (change)="onCheckboxCange(c,$event)"></td>
+                    </tr>
+                </tbody>
+            </table>
+
+
+            
+            <input type="button" value="Save" (click)="save()" class="btn btn-success" />
+        </div>
+    </div>
+
+    <p><a routerLink="/ownercars" class="nav-link">to list owner cars</a></p>
+
+</div>

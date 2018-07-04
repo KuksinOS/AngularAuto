@@ -1,0 +1,49 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <TypeScriptToolsVersion>2.8</TypeScriptToolsVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="ClientApp\app\app.component.ts" />
+    <None Remove="ClientApp\app\app.module.ts" />
+    <None Remove="ClientApp\app\app.router.ts" />
+    <None Remove="ClientApp\app\cars\cars.component.ts" />
+    <None Remove="ClientApp\app\home\home.component.ts" />
+    <None Remove="ClientApp\app\ownercars\ownercars.component.ts" />
+    <None Remove="ClientApp\app\ownercar_detail\ownercar_detail.component.ts" />
+    <None Remove="ClientApp\app\_models\car.ts" />
+    <None Remove="ClientApp\app\_models\ownercar.ts" />
+    <None Remove="ClientApp\app\notfound\notfound.component.ts" />
+    <None Remove="ClientApp\app\_services\carservice.ts" />
+    <None Remove="ClientApp\app\_services\index.ts" />
+    <None Remove="ClientApp\app\_services\ownercarservice.ts" />
+    <None Remove="ClientApp\main.ts" />
+    <None Remove="ClientApp\polyfills.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.8" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\app\app.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\app.module.ts" />
+    <TypeScriptCompile Include="ClientApp\app\app.router.ts" />
+    <TypeScriptCompile Include="ClientApp\app\cars\cars.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\home\home.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\ownercars\ownercars.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\ownercar_detail\ownercar_detail.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\_models\car.ts" />
+    <TypeScriptCompile Include="ClientApp\app\_models\ownercar.ts" />
+    <TypeScriptCompile Include="ClientApp\app\notfound\notfound.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\_services\carservice.ts" />
+    <TypeScriptCompile Include="ClientApp\app\_services\index.ts" />
+    <TypeScriptCompile Include="ClientApp\app\_services\ownercarservice.ts" />
+    <TypeScriptCompile Include="ClientApp\main.ts" />
+    <TypeScriptCompile Include="ClientApp\polyfills.ts" />
+  </ItemGroup>
+
+</Project>

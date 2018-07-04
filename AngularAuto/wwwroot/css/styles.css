@@ -1,0 +1,38 @@
+﻿body {
+    background: #757474;
+    color: #fff;
+}
+
+.navbar {
+    border-bottom: #008ed6 3px solid;
+    opacity: 0.8;
+}
+
+
+.home-inner {
+    padding-top: 150px;
+}
+
+.login-inner {
+    padding-top: 150px;
+}
+
+.catalogmenu-inner {
+    padding-top: 70px;
+}
+
+    .catalogmenu-inner h5 {
+        text-align: center;
+ }
+
+a {
+    color: lightblue;
+}
+
+.card {
+    color: black;
+}
+
+.form-check-label {
+    color: blue;
+}

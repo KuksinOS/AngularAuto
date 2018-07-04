@@ -1,0 +1,80 @@
+﻿<h1>List of Cars</h1>
+<input type="button" value="Добавить" class="btn btn-default" (click)="add()" />
+<table *ngIf="tableMode; else create" class="table table-striped">
+    <thead>
+        <tr>
+            <td>Model</td>
+            <td>Type</td>
+            <td>Engine</td>
+            <td>PaintColor</td>
+            <td>Wheels</td>
+            <td></td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let c of cars">
+            <ng-template [ngIf]="car?.id != c.id" [ngIfElse]="edit">
+                <td>{{c?.name}}</td>
+                <td>{{c?.body}}</td>
+                <td>{{c?.engine}}</td>
+                <td>{{c?.paintColor}}</td>
+                <td>{{c?.wheels}}</td>
+                <td>
+                    <button class="btn btn-sm btn-primary" (click)="editCar(c)">Изменить</button>
+                    <button class="btn btn-sm btn-danger" (click)="delete(c)">Удалить</button>
+                </td>
+            </ng-template>
+        </tr>
+    </tbody>
+</table>
+
+<!--шаблон для редактирования-->
+<ng-template #edit>
+    <td>
+        <input type="text" [(ngModel)]="car.name" class="form-control" />
+    </td>
+    <td>
+        <input type="text" [(ngModel)]="car.body" class="form-control" />
+    </td>
+    <td>
+        <input type="text" [(ngModel)]="car.engine" class="form-control" />
+    </td>
+    <td>
+        <input type="text" [(ngModel)]="car.paintColor" class="form-control" />
+    </td>
+    <td>
+        <input type="text" [(ngModel)]="car.wheels" class="form-control" />
+    </td>
+    <td>
+        <input type="button" value="Сохранить" (click)="save()" class="btn btn-sm btn-success" />
+        <input type="button" value="Отмена" (click)="cancel()" class="btn btn-sm btn-warning" />
+    </td>
+</ng-template>
+
+<!--шаблон для добавления-->
+<ng-template #create>
+    <div class="form-group">
+        <label>Model</label>
+        <input type="text" [(ngModel)]="car.name" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label>Type</label>
+        <input type="text" [(ngModel)]="car.body" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label>Engine</label>
+        <input type="text" [(ngModel)]="car.engine" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label>PaintColor</label>
+        <input type="text" [(ngModel)]="car.paintColor" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label>Wheels</label>
+        <input type="text" [(ngModel)]="car.wheels" class="form-control" />
+    </div>
+    <div>
+        <input type="button" value="Сохранить" (click)="save()" class="btn btn-success" />
+        <input type="button" value="Отмена" (click)="cancel()" class="btn btn-warning" />
+    </div>
+</ng-template>
