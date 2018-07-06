@@ -11,7 +11,7 @@ namespace AngularAuto.Models
 
         public OwnerCar()
         {
-            this.Cars = new HashSet<Car>();
+            this.Cars = new List<Car>();
         }
 
 

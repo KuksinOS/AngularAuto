@@ -3,6 +3,8 @@ using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using AngularAuto.Models;
 using AngularAuto.ViewModels;
+using Microsoft.EntityFrameworkCore;
+
 
 namespace AngularAuto.Controllers
 {
@@ -62,16 +64,36 @@ namespace AngularAuto.Controllers
         }
 
 
-        [HttpPut("UpdateCarsByOwner/{id}")]
-        public IActionResult UpdateCarsByOwner(int id, [FromBody]ICollection<CarViewModel> Cars)
+        [HttpPut("UpdateCars/{id}")]
+        public IActionResult UpdateCars(int id, [FromBody]ICollection<CarViewModel> carsview)
         {
-            //if (ModelState.IsValid)
-            //{
-            //    db.Update(ownercar);
-            //    db.SaveChanges();
+            if (carsview != null)
+            {
+                var ownercar = db.OwnerCars.Single(ow => ow.Id == id);
+                //var cars = db.OwnerCars
+                //.Include(owc => owc.Cars)
+                //.ToList();
+                //var cars = db.Cars.Where(c => c.OwnerCarId == null);
+                var cars = db.Cars;
+
+                foreach (CarViewModel carview in carsview)
+                {
+                    Car car = cars.Single(c => c.Id == carview.Id);
+                    if (car != null)
+                    {
+                        car.ownercar_id = carview.ownercar_id;
+                        db.Update(car);
+                    }
+                }
+                if (ModelState.IsValid)
+                {
+                    db.SaveChanges();
+                    return Ok();
+                }
+                return BadRequest(ModelState);
+            }
+            else
                 return Ok();
-            //}
-            //return BadRequest(ModelState);
         }
 
 

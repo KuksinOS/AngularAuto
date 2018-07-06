@@ -21,8 +21,6 @@ namespace AngularAuto.ViewModels
        
         public string Wheels { get; set; }
 
-        // [Key, ForeignKey("OwnerCar")]
-        public int? OwnerCarId { get; set; }
         public int? ownercar_id { get; set; }
 
 

@@ -34,13 +34,13 @@ namespace AngularAuto.Controllers
         [HttpGet("CarsByOwner/{id}")]
         public IEnumerable<Car> CarsByOwner(int id)
         {
-            return db.Cars.Where(cars => cars.OwnerCarId == id);
+            return db.Cars.Where(cars => cars.ownercar_id == id);
         }
 
         [HttpGet("CarsByNoOwner")]
         public IEnumerable<Car> CarsByNoOwner()
         {
-            return db.Cars.Where(cars => cars.OwnerCarId == null);
+            return db.Cars.Where(cars => cars.ownercar_id == null);
         }
 
 

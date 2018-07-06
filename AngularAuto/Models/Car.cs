@@ -25,7 +25,7 @@ namespace AngularAuto.Models
         public string Wheels { get; set; }
 
        // [Key, ForeignKey("OwnerCar")]
-        public int? OwnerCarId { get; set; }
+        public int? ownercar_id { get; set; }
         public virtual OwnerCar OwnerCar { get; set; }
 }
 }

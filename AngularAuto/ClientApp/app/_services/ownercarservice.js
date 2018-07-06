@@ -13,7 +13,7 @@ var OwnerCarsService = /** @class */ (function () {
     function OwnerCarsService(http) {
         this.http = http;
         this.url = "/api/OwnerCars";
-        this.urlupdatecarsbyowner = "/api/OwnerCars/UpdateCarsByOwner";
+        this.urlupdatecarsbyowner = "/api/OwnerCars/UpdateCars";
         this.httpOptions = {
             headers: new HttpHeaders({
                 'Content-Type': 'application/json'
@@ -33,12 +33,8 @@ var OwnerCarsService = /** @class */ (function () {
         return this.http.put(this.url + '/' + ownercar.id, ownercar);
     };
     OwnerCarsService.prototype.updateUpdateCarsByOwner = function (id, cars) {
-        // console.log(this.urlupdatecarsbyowner + '/' + id); 
-        //console.log(cars); 
-        //return this.http.put(this.urlupdatecarsbyowner + '/' + id, cars);
-        // return this.http.put("/api/OwnerCars/UpdateCarsByOwner/1", cars);
-        var car = cars[0];
-        return this.http.put(this.urlupdatecarsbyowner + '/' + id, cars, this.httpOptions).subscribe(function (c) { return console.log(c); });
+        //console.log(cars);
+        return this.http.put(this.urlupdatecarsbyowner + '/' + id, cars, this.httpOptions).subscribe(); //c => console.log(c));
     };
     OwnerCarsService.prototype.deleteOwnerCar = function (id) {
         return this.http.delete(this.url + '/' + id);

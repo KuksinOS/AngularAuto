@@ -8,7 +8,7 @@ import { Car } from '../_models/car';
 export class OwnerCarsService {
 
     private url = "/api/OwnerCars";
-    private urlupdatecarsbyowner = "/api/OwnerCars/UpdateCarsByOwner";
+    private urlupdatecarsbyowner = "/api/OwnerCars/UpdateCars";
 
 
      private httpOptions = {
@@ -40,13 +40,8 @@ export class OwnerCarsService {
     }
 
     updateUpdateCarsByOwner(id: number, cars: Car[]) {
-       // console.log(this.urlupdatecarsbyowner + '/' + id); 
-        //console.log(cars); 
-        //return this.http.put(this.urlupdatecarsbyowner + '/' + id, cars);
-       // return this.http.put("/api/OwnerCars/UpdateCarsByOwner/1", cars);
-       var car = cars[0];
-        return this.http.put<Car>(this.urlupdatecarsbyowner + '/' + id, cars, this.httpOptions).subscribe(c => console.log(c));
-           
+        //console.log(cars);
+        return this.http.put<Car>(this.urlupdatecarsbyowner + '/' + id, cars, this.httpOptions).subscribe();//c => console.log(c));
 
     }
 

@@ -19,9 +19,11 @@ export class OwnerCarDetailComponent implements OnInit {
     id: number;
     car: Car;
     ownercar: OwnerCar;
-    cars: Car[];
+    carsbynoowner: Car[];
+    carsbyowner: Car[];
 
-    loaded: boolean = false;
+    loadedownercar: boolean = false;
+    loadedcars: boolean = false;
 
     constructor(private ownercarsService: OwnerCarsService, private carsService: CarsService, private route: ActivatedRoute,
         private router: Router) {
@@ -29,43 +31,66 @@ export class OwnerCarDetailComponent implements OnInit {
     }
 
     ngOnInit() {
+        this.carsbynoowner=[];
+        this.carsbyowner = [];
+
         if (this.id) {
-            this.carsService.getCarsByNoOwner()
-                .subscribe((data: OwnerCar) => { this.ownercar = data; this.loaded = true; });
-            this.loadCars(); 
+
+            this.ownercarsService.getOwnerCar(this.id)
+                .subscribe((data: OwnerCar) => { this.ownercar = data; this.loadedownercar = true; });
+
+            this.carsService.getCars()
+                .subscribe((data: Car[]) => {
+                    data.forEach(car => {
+                        if (car.ownercar_id != null)
+                            this.carsbyowner.push(car);
+                        else
+                            this.carsbynoowner.push(car);
+                    });
+                    this.loadedcars = true;     
+                });
+           // console.log();
+            
         }
     }
-        // получаем данные через сервис
-    loadCars() {
-            
-             this.carsService.getCars()
-                 .subscribe((data: Car[]) => this.cars = data);
+       
+    getCars() {
 
-    }
+        var mergingcars = [
+            ...this.carsbynoowner
+            .filter(car => car.ownercar_id != null),
+            ...this.carsbyowner
+                .filter(car => car.ownercar_id == null)];
 
-    getvselectedCars() {
-        return this.cars
-            .filter(car => car.ownercar_id!=null)
+       // console.log(mergingcars);
+        return mergingcars;
           
     }
 
-    onCheckboxCange(car: Car, event: any) {
+    
+    onCheckboxNoOwnerCange(car: Car, event: any) {
         if (event.target.checked) 
             car.ownercar_id = this.id;
         else
             car.ownercar_id = null;
     }
 
-    save() {
-        //console.log(this.getvselectedCars()); 
-        
-        this.ownercarsService.updateUpdateCarsByOwner(this.id, this.getvselectedCars());
-            
-
-
+    onCheckboxOwnerCange(car: Car, event: any) {
+        if (event.target.checked)
+            car.ownercar_id = this.id;
+        else
+            car.ownercar_id = null;
     }
 
+    async save() {
+       // console.log(this.getCars()); 
+       // location.reload()
+        await this.ownercarsService.updateUpdateCarsByOwner(this.id, this.getCars());
+       // this.ngOnInit();  
+        
+    }
 
+ 
 
 
     
